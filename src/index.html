@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Food in the Hill</title>
+        <link href="css/style.css?__inline=true" rel="stylesheet">
+    </head>
+    <body>
+        <div class="searchcol">
+            <h1>Food in the Hill</h1>
+            <button data-bind="click: toggleListView"></button>
+            <!-- Hide div with CSS until knockout bindings have been applied.  This
+            prevents an initial flash of div contents.  See http://stackoverflow.com/questions/12775766/knockout-js-stop-divs-binded-to-visible-from-flashing-on-screen -->
+            <div class="listview, hidden" data-bind="css: { hidden: false }, visible: listVisibility">
+                <input type="search" placeholder="Search by name" data-bind='textInput: searchString'>
+                <ul class="venuelist" data-bind="foreach: filteredVenueList">
+                    <li data-bind="text: name, click: $parent.listClickHandler"></li>
+                </ul>
+            </div>
+        </div>
+        <div id="map" class="mapcol"></div>
+        <!-- build:js js/optimizedJS.js -->
+        <script src="js/jquery-2.2.0.min.js"></script>
+        <script src="js/knockout-3.4.0.js"></script>
+        <script src="js/oauth-signature.min.js"></script>
+        <script src="js/app.js"></script>
+        <!-- endbuild -->
+        <script async src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=mapInit" onerror="initWithGoogleMapsError()">
+        </script>
+    </body>
+</html>
