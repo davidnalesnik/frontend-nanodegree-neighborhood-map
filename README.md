@@ -83,8 +83,7 @@ To build the optimized version from the source directory, follow these steps:
 4. Install the Grunt plug-ins used to build the project:
 
   ```
-  npm install grunt-contrib-copy grunt-contrib-concat grunt-contrib-uglify
-  grunt-usemin grunt-inline grunt-contrib-htmlmin --save-dev
+  npm install grunt-contrib-copy grunt-contrib-concat grunt-contrib-uglify grunt-usemin grunt-inline grunt-contrib-htmlmin --save-dev
   ```
 
 5. Finally, type the following command into the terminal:
