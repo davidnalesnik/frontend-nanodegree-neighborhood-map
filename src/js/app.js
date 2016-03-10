@@ -220,7 +220,7 @@ var ViewModel = function() {
             var name = venue.name.toLowerCase();
             var hide = (name.indexOf(searchstring) === -1);
             if (typeof google !== 'undefined') {
-                hide ? venue.marker.setMap(null) : venue.marker.setMap(map);
+                hide ? venue.marker.setVisible(false) : venue.marker.setVisible(true);
             }
             return !hide;
         });
