@@ -88,6 +88,13 @@ function mapInit() {
 
     var makeMarkerClickCallback = function(venue) {
         return function() {
+            /**
+                Open window with venue name before making AJAX request.
+                Content will be updated when Yelp info is available.
+            */
+            var initialInfo = '<div class="infowindow"><h3>' + venue.name + '</h3></div>'
+            infoWindow.setContent(initialInfo);
+            infoWindow.open(map, venue.marker);
             var settings = getJQueryAjaxSettings(venue);
             $.ajax(settings);
             if (this.getAnimation() == null) {
@@ -370,14 +377,12 @@ function getJQueryAjaxSettings(venue) {
                 infoHTML += '<p class="yelperror">Not found at Yelp</p></div>';
             }
             infoWindow.setContent(infoHTML);
-            infoWindow.open(map, venue.marker);
         },
         // On error, give user infomation from Google Places and a message.
         error: function(jqXHR, textStatus, errorThrown) {
             var message = '(' + jqXHR.status + ' ' + errorThrown + ')';
             infoWindow.setContent(baseInfoHTML +
             '<p class="yelperror">Yelp unavailable ' + message + '</p>');
-            infoWindow.open(map, venue.marker);
         }
     };
     return settings;
